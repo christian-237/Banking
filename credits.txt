@@ -1,0 +1,196 @@
+Remplacez /api/transactions par votre point de terminaison 
+d'API réel pour récupérer et soumettre des transactions
+Intégrez une passerelle de paiement sécurisée pour traiter 
+les transactions financières.
+Ajoutez un historique des paiements pour que les utilisateurs
+ puissent suivre leurs transactions passées.
+Intégrez des notifications par e-mail ou SMS pour informer les 
+utilisateurs des paiements réussis ou échoués.
+
+Technologies et outils suggérés :
+
+Front-end : HTML, CSS, JavaScript, bibliothèques JavaScript (jQuery, React, Angular, etc.).
+Back-end : Python, Java, Node.js, frameworks web (Django, Spring Boot, Express.js, etc.).
+Passerelles de paiement : Stripe, PayPal, Braintree, etc.
+Bases de données : MySQL, PostgreSQL, MongoDB, etc.
+
+
+
+
+
+
+
+Pages supplémentaires pour une banque en ligne côté client et côté admin
+
+En plus des pages que vous avez déjà créées, voici quelques autres pages 
+que vous pouvez ajouter à votre banque en ligne pour une meilleure expérience 
+utilisateur, côté client et côté administrateur:
+
+Côté client:
+
+    Page de connexion: Permet aux utilisateurs de se connecter à leur compte bancaire en ligne.
+    Page de profil: Affiche les informations personnelles de l'utilisateur, telles que son nom, son adresse e-mail et son numéro de téléphone. Il permet également à 
+    l'utilisateur de modifier ses informations et de définir ses préférences.
+    Page des comptes: Affiche la liste des comptes bancaires de l'utilisateur, y compris le solde, les transactions récentes et les détails du compte.
+    Page des transactions: Affiche l'historique des transactions de l'utilisateur, avec des filtres pour la recherche par date, montant, type de transaction, etc.
+    Page des virements: Permet à l'utilisateur de virer de l'argent entre ses propres comptes ou vers des comptes externes.
+    Page de paiement de factures: Permet à l'utilisateur de payer ses factures en ligne.
+    Page de demande de crédit: Permet à l'utilisateur de demander un crédit en ligne.
+    Page de messagerie sécurisée: Permet à l'utilisateur d'envoyer et de recevoir des messages sécurisés à la banque.
+    Page de centre d'aide: Fournit des informations et des ressources pour aider les utilisateurs à utiliser la banque en ligne.
+
+Côté administrateur:
+
+    Tableau de bord: Donne à l'administrateur un aperçu des activités de la banque, telles que le nombre de transactions, 
+    le solde total des comptes et les utilisateurs actifs.
+    Page de gestion des utilisateurs: Permet à l'administrateur d'ajouter, modifier et supprimer des utilisateurs.
+    Page de gestion des comptes: Permet à l'administrateur d'ajouter, modifier et supprimer des comptes bancaires.
+    Page de gestion des transactions: Permet à l'administrateur de visualiser, rechercher et modifier les transactions.
+    Page de gestion des rapports: Permet à l'administrateur de générer des rapports sur les activités de la banque.
+    Page de configuration du système: Permet à l'administrateur de configurer les paramètres de la banque en ligne.
+
+En plus de ces pages, vous pouvez également envisager d'ajouter des fonctionnalités telles que:
+
+    Un chat en direct pour que les clients puissent obtenir de l'aide en temps réel.
+    Une application mobile pour que les clients puissent gérer leurs comptes bancaires depuis leur smartphone ou leur tablette.
+    Des outils de budgétisation pour aider les clients à gérer leurs finances.
+    Des alertes de fraude pour protéger les clients contre les transactions frauduleuses.
+    Des services de gestion de patrimoine pour aider les clients à atteindre leurs objectifs financiers.
+
+
+    version de Datatable Server/Side
+
+
+
+
+
+    Je voudrais implémenter session avec ajax sur la table   clients (
+  client_id INT PRIMARY KEY AUTO_INCREMENT,
+  nom VARCHAR(255) NOT NULL,
+  prenom VARCHAR(255) NOT NULL,
+  date_naissance DATE NOT NULL,
+  imageclient VARCHAR(255) NOT NULL,
+  email VARCHAR(255) DEFAULT NULL,
+  telephone VARCHAR(25) NOT NULL,
+  mot_de_passe VARCHAR(255) NOT NULL,
+  etat varchar(255) NOT NULL,
+  UNIQUE (email)
+); le clients entrera son nom et son mot de passe   si le mot de passe correspond au nom du clients si non message d'erreu puis  récupérer l'id et nom  du clients et  redirection  dans la page index.php voici la page se login.php :
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>digital bank</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+  </head>
+  <body>
+    <div class="page login-page">
+      <div class="container">
+        <div class="form-outer text-center d-flex align-items-center">
+          <div class="form-inner">
+            <div class="logo text-uppercase"><span>digital</span><strong class="text-primary">bank</strong></div>
+            <p>Bienvenue dans notre banque en ligne ! Nous sommes ravis de vous accueillir dans notre plateforme sécurisée et conviviale.</p>
+            <form id="loginForm" class="text-left form-validate">
+              <div class="form-group-material">
+                <input id="nom" type="text" name="nom" required data-msg="Please enter your username" class="input-material">
+                <label for="nom" class="label-material">Username</label>
+              </div>
+              <div class="form-group-material">
+                <input id="mot_de_passe" type="password" name="mot_de_passe" required data-msg="Please enter your password" class="input-material">
+                <label for="mot_de_passe" class="label-material">Password</label>
+              </div>
+              <div class="form-group text-center"><a id="login" class="btn btn-primary">Login</a>
+                <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+              </div>
+            </form><a href="#" class="forgot-pass">Forgot Password?</a><small>Do not have an account? </small><a href="register.php" class="signup">Signup</a>
+          </div>
+          <div class="copyrights text-center">
+            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <script src="js/login.js"></script>
+    <script>
+    $(document).ready(function() {
+    $('#loginForm').submit(function(event) {
+        // Empêcher la soumission par défaut du formulaire
+        event.preventDefault();
+
+        // Réinitialiser les messages d'erreur
+        $('.invalid-feedback').text('');
+
+        // Récupérer les valeurs des champs
+        var username = $('#username').val();
+        var password = $('#password').val();
+
+        // Vérifier si les champs sont vides
+        if (!username || !password) {
+            // Afficher un message d'erreur pour les champs vides
+            $('#username').next('.invalid-feedback').text('Veuillez remplir tous les champs.');
+            return;
+        }
+
+        // Envoyer la requête AJAX pour vérifier les identifiants
+        $.ajax({
+            url: ajaxUrl, // Utiliser la variable ajaxUrl pour le chemin
+            method: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (!response.success) {
+                    // Afficher un message d'erreur pour les identifiants invalides
+                    $('#password').next('.invalid-feedback').text(response.message);
+                    $('#password').addClass('is-invalid');
+                    $('#username').next('.invalid-feedback').text(response.message);
+                    $('#username').addClass('is-invalid');
+                } else {
+                    // Redirection après une requête AJAX réussie
+                    window.location.href = 'index.php';
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Erreur AJAX:', error);
+            }
+        });
+    });
+});
+</script>
+
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+  </body>
+</html>
