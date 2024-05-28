@@ -31,9 +31,8 @@ CREATE TABLE transactions (
   type_transaction ENUM('depot', 'retrait', 'virement') NOT NULL,
   montant DECIMAL(10,2) NOT NULL,
   description TEXT,
-  date_transaction DATE NOT NULL,
-  etat varchar(255) NOT NULL,
-  FOREIGN KEY (compte_id) REFERENCES comptes(compte_id),
+  transaction_date DATE NOT NULL,
+  etat VARCHAR(255) NOT NULL,
   FOREIGN KEY (compte_id) REFERENCES comptes(compte_id)
 );
 

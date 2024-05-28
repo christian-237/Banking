@@ -29,16 +29,10 @@
                         comptes
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="transactions.php">
-                        <i class="fas fa-history"></i>
-                        transactions
-                    </a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item d-flex">
                     <a class="nav-link" href="recharge.php">
                         <i class="fas fa-exchange-alt"></i>
-                        recharge
+                        transactions
                     </a>
                 </li>
                 <li class="nav-item">

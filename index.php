@@ -78,7 +78,7 @@
           <div class="col-lg-12">
             <div class="card radar-chart-example">
               <div class="card-header d-flex align-items-center">
-                <h4>Radar Chart Example</h4>
+                <h4>recharger comptes</h4>
               </div>
               <div class="card-body">
                 <div class="chart-container">
@@ -90,7 +90,7 @@
                       <div class="mb-3">
                           <label for="moyenPaiement" class="form-label">Moyen de paiement:</label>
                           <select class="form-select" id="moyenPaiement">
-                            <option value="client_id" name="nom">selectione un comptes</option>
+                            <option value="" disabled selected>Sélectionnez un compte</option>
                           </select>
                       </div>
                       <button type="submit" class="btn btn-success">Recharger</button>
@@ -239,7 +239,7 @@
   </body>
 </html>
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     // Remplir la liste des comptes
     $.ajax({
         url: "get_client.php",
@@ -250,11 +250,11 @@
             select.empty();
             select.append('<option value="" disabled selected>Sélectionnez un compte</option>');
             $.each(accounts, function(index, account) {
-                select.append('<option value="' + account.compte_id + '">' + account.numero_compte + '</option>');
+                select.append('<option value="' + account.compte_id + '">' + account.nom + ' ' + account.prenom + '</option>');
             });
         },
         error: function() {
-            alert("Erreur lors du chargement des comptes.");
+            Swal.fire("Erreur", "Erreur lors du chargement des comptes.", "error");
         }
     });
 
@@ -271,21 +271,28 @@
                     montant: montant,
                     compte_id: compte_id
                 },
-                success: function(data) {
-                    alert(data);
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (data.success) {
+                        Swal.fire("Succès", data.message, "success");
+                    } else {
+                        Swal.fire("Erreur", data.message, "error");
+                    }
                     // Réinitialiser le formulaire
                     $('#rechargeForm')[0].reset();
                 },
                 error: function() {
-                    alert("Erreur lors de la recharge.");
+                    Swal.fire("Erreur", "Erreur lors de la recharge.", "error");
                 }
             });
         } else {
-            alert("Veuillez entrer un montant valide et sélectionner un compte.");
+            Swal.fire("Erreur", "Veuillez entrer un montant valide et sélectionner un compte.", "error");
         }
     });
 });
+
 </script>
+
 
 <script>
 $(document).ready(function() {

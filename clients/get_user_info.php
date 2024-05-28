@@ -11,7 +11,7 @@ $response = ['success' => false];
 
 if (isset($_SESSION["client_id"])) {
     $client_id = $_SESSION["client_id"];
-    $sql = "SELECT nom, email, telephone, date_naissance FROM clients WHERE client_id = ?";
+    $sql = "SELECT nom, prenom, email, telephone, date_naissance FROM clients WHERE client_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $client_id);
     $stmt->execute();

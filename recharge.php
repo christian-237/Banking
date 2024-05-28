@@ -2,26 +2,26 @@
 include 'connexiondb.php';
 $conn = connexionMysqli();
 
-// Récupérer tous les comptes et les clients
-$sql_comptes = "SELECT compte_id, numero_compte, client_id FROM comptes";
-$result_comptes = $conn->query($sql_comptes);
+$montant = $_POST['montant'];
+$compte_id = $_POST['compte_id'];
 
-$sql_clients = "SELECT client_id, nom, prenom FROM clients";
-$result_clients = $conn->query($sql_clients);
+// Mettre à jour le solde du compte
+$sql_update = "UPDATE comptes SET solde = solde + ? WHERE compte_id = ?";
+$stmt = $conn->prepare($sql_update);
+$stmt->bind_param("di", $montant, $compte_id);
 
-$data = array(
-    "comptes" => array(),
-    "clients" => array()
-);
+$response = array();
 
-while ($row = $result_comptes->fetch_assoc()) {
-    $data["comptes"][] = $row;
+if ($stmt->execute()) {
+    $response['success'] = true;
+    $response['message'] = "Recharge réussie!";
+} else {
+    $response['success'] = false;
+    $response['message'] = "Erreur lors de la recharge: " . $conn->error;
 }
 
-while ($row = $result_clients->fetch_assoc()) {
-    $data["clients"][] = $row;
-}
-echo json_encode($data);
-
+$stmt->close();
 $conn->close();
+
+echo json_encode($response);
 ?>

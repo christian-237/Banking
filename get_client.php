@@ -2,8 +2,10 @@
 include 'connexiondb.php';
 $conn = connexionMysqli();
 
-// Récupérer tous les comptes
-$sql_comptes = "SELECT compte_id, numero_compte FROM comptes";
+// Récupérer tous les comptes avec les noms de clients
+$sql_comptes = "SELECT comptes.compte_id, clients.nom, clients.prenom, comptes.numero_compte 
+                FROM comptes 
+                JOIN clients ON comptes.client_id = clients.client_id";
 $result_comptes = $conn->query($sql_comptes);
 
 $data = array();

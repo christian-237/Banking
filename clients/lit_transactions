@@ -1,0 +1,54 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_status_errors', 1);
+error_reporting(E_ALL);
+session_start();
+// Inclure les fichiers nécessaires et initialiser la connexion à la base de données
+include '../connexiondb.php';
+$conn = connexionMysqli();
+
+// Paramètres de DataTables
+$columns = array(
+    // Liste des colonnes de la table transactions
+    // Ajoutez ici les colonnes que vous souhaitez afficher dans le DataTable
+    'transaction_id',
+    'compte_source',
+    'compte_destination',
+    'montant',
+    'date_transaction'
+);
+
+$table = 'transactions'; // Nom de la table des transactions
+
+// Paramètres de la requête SQL
+$primaryKey = 'transaction_id'; // Clé primaire de la table
+$order = 'ORDER BY date_transaction DESC'; // Ordre de tri par défaut
+$where = ''; // Condition WHERE pour la recherche
+
+// Construction de la requête SQL en fonction des paramètres de DataTables
+$sql = "SELECT " . implode(", ", $columns) . " FROM $table $where $order";
+
+// Exécuter la requête SQL
+$result = $conn->query($sql);
+
+// Créer le tableau de données pour DataTables
+$data = array();
+while ($row = $result->fetch_assoc()) {
+    $data[] = $row;
+}
+
+// Libérer les ressources et fermer la connexion à la base de données
+$result->close();
+$conn->close();
+
+// Formatage des données pour DataTables
+$output = array(
+    "draw" => intval($_REQUEST['draw']),
+    "recordsTotal" => count($data), // Nombre total de données sans filtrage
+    "recordsFiltered" => count($data), // Nombre total de données après filtrage
+    "data" => $data // Données à afficher dans le DataTable
+);
+
+// Envoyer les données au format JSON
+echo json_encode($output);
+?>
