@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="nav-item d-flex">
-                    <a class="nav-link" href="recharge.php">
+                    <a class="nav-link" href="transactions.php">
                         <i class="fas fa-exchange-alt"></i>
                         transactions
                     </a>

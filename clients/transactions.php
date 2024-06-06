@@ -39,8 +39,7 @@
                 <input type="text" class="form-control" placeholder="Rechercher par date, montant, type de transaction..." id="searchInput">
                 <button class="btn btn-outline-secondary" type="button" id="searchButton">Rechercher</button>
               </div>
-
-              <table id="transactionsTable" class="display" style="width:100%">
+                <table id="transactionsTable" class="display" style="width:100%">
                   <thead>
                       <tr>
                           <th>ID Transaction</th>
@@ -51,7 +50,7 @@
                       </tr>
                   </thead>
                   <tbody></tbody>
-              </table>
+                </table>
             </div>
           </div>
         </div>
@@ -121,24 +120,25 @@ $(document).ready(function() {
     });
 });
   </script>
-      <script>
-        $(document).ready(function() {
-            $('#transactionsTable').DataTable({
-                "serverSide": true,
-                "ajax": {
-                    "url": "lit_transactions.php",
-                    "type": "POST"
-                },
-                "columns": [
-                    { "data": "transaction_id" },
-                    { "data": "compte_source" },
-                    { "data": "compte_destination" },
-                    { "data": "montant" },
-                    { "data": "date_transaction" }
-                ]
-            });
-        });
-    </script>
+  <script>
+  $(document).ready(function() {
+      $('#transactionsTable').DataTable({
+          "processing": true,
+          "serverSide": true,
+          "ajax": {
+              "url": "tran_histo.php",
+              "type": "POST"
+          },
+          "columns": [
+              { "data": "transaction_id" },
+              { "data": "compte_source_nom" },
+              { "data": "compte_destination_nom" },
+              { "data": "montant" },
+              { "data": "date_transaction" }
+          ]
+      });
+  });
+  </script>
   <script>
     $('#libelles').select2({
       dropdownParent: $('#transactionModal'),
